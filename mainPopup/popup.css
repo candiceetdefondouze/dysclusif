@@ -1,0 +1,111 @@
+/* Dark theme: Catpuccin Latte */
+:root {
+    --color-rosewater: #dc8a78;
+    --color-flamingo: #dd7878;
+    --color-pink: #ea76cb;
+    --color-mauve: #8839ef;
+    --color-red: #d20f39;
+    --color-maroon: #e64553;
+    --color-peach: #fe640b;
+    --color-yellow: #df8e1d;
+    --color-green: #40a02b;
+    --color-teal: #179299;
+    --color-sky: #04a5e5;
+    --color-sapphire: #209fb5;
+    --color-blue: #1e66f5;
+    --color-lavender: #7287fd;
+    --color-text: #4c4f69;
+    --color-subtext1: #5c5f77;
+    --color-subtext0: #6c6f85;
+    --color-overlay2: #7c7f93;
+    --color-overlay1: #8c8fa1;
+    --color-overlay0: #9ca0b0;
+    --color-surface2: #acb0be;
+    --color-surface1: #bcc0cc;
+    --color-surface0: #ccd0da;
+    --color-base: #eff1f5;
+    --color-mantle: #e6e9ef;
+    --color-crust: #dce0e8;
+}
+
+/* Light theme: Catppuccin Mocha */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-rosewater: #f5e0dc;
+        --color-flamingo: #f2cdcd;
+        --color-pink: #f5c2e7;
+        --color-mauve: #cba6f7;
+        --color-red: #f38ba8;
+        --color-maroon: #eba0ac;
+        --color-peach: #fab387;
+        --color-yellow: #f9e2af;
+        --color-green: #a6e3a1;
+        --color-teal: #94e2d5;
+        --color-sky: #89dceb;
+        --color-sapphire: #74c7ec;
+        --color-blue: #89b4fa;
+        --color-lavender: #b4befe;
+        --color-text: #cdd6f4;
+        --color-subtext1: #bac2de;
+        --color-subtext0: #a6adc8;
+        --color-overlay2: #9399b2;
+        --color-overlay1: #7f849c;
+        --color-overlay0: #6c7086;
+        --color-surface2: #585b70;
+        --color-surface1: #45475a;
+        --color-surface0: #313244;
+        --color-base: #1e1e2e;
+        --color-mantle: #181825;
+        --color-crust: #11111b;
+    }
+
+    #status-img {
+        filter: invert(100%);
+    }
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    background-color: var(--color-base);
+    color: var(--color-text);
+    text-align: center;
+}
+
+#status-img {
+    max-width: 200px;
+    height: auto;
+    z-index: 0;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: var(--color-subtext0);
+    color: var(--color-base)
+}
+
+#status.enabled {
+    position: relative;
+    display: inline-block;
+}
+
+#status.enabled::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    left: 15px;
+    bottom: 105%;
+    border: 2px solid var(--color-red); /* Adjust the thickness and color of the crossbar */
+    transform: rotate(-17deg);
+    transform-origin: top right;
+    box-sizing: border-box;
+    z-index: 1;
+    border-radius: 2px;
+}
