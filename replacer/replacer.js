@@ -1,5 +1,5 @@
-let pt = '(•|\\.|·|⋅|\\-)';
-let optPt = '(|•|\\.|·|⋅|\\-)';
+let pt = '(•|\\.|·|⋅|⸱|\\-)';
+let optPt = `(${pt}|)`;
 
 expressions = [
     // Complete words
@@ -10,10 +10,9 @@ expressions = [
     [`(?<![a-zA-Z])lae(?![a-zA-Z])`, "le"],
 
     // End of words
-    [`s${pt}(trice|e|ne|ice)${optPt}s(?![a-zA-Z])`, "s"], // spectateurs•trices
-    [`${pt}(trice|e|ne|ice)${optPt}s(?![a-zA-Z])`, "s"], // spectateur•trice•s
+    [`(s|)${pt}(trice|e|ne|ice)${optPt}s(?![a-zA-Z])`, "s"], // spectateurs•trice•s
     [`${pt}(trice|e|ne|ice)(?![a-zA-Z])`, ""], // ancien•ne
-    [`eur${optPt}(ice|euse)${optPt}s(?![a-zA-Z])`, "eurs"], // travailleur•euse•s
+    [`eur${pt}(ice|euse)${optPt}s(?![a-zA-Z])`, "eurs"], // travailleur•euse•s
     [`\\((trice|e|ne|ice)\\)s(?![a-zA-Z])`, "s"], // instituteur(trice)s
     [`\\((trice|e|ne|ice)\\)(?![a-zA-Z])`, ""], // instituteur(trice)
     [`((x${pt}(ses|se))|xs)(?![a-zA-Z])`, "x"], // nombreux•ses
@@ -22,6 +21,12 @@ expressions = [
     [`l${pt}le(?![a-zA-Z])`, "l"], // personnel•le
     [`(${pt}e|\\(e\\))(?![a-zA-Z])`, ""]
 ];
+
+let regexps = [];
+for (let i=0; i < expressions.length; i++) {
+    let regex = new RegExp(expressions[i][0], "g");
+    regexps.push(regex);
+}
 
 let updateStatistics = (documentTotalReplacements) => {
     if (documentTotalReplacements > 0) {
@@ -36,25 +41,42 @@ let updateStatistics = (documentTotalReplacements) => {
     }
 }
 
-let replaceElems = () => {
-    let documentTotalReplacements = 0;
-    let originalHTML = document.body.innerHTML;
+
+let applyRegExps = (text) => {
+    let textReplacementsCount = 0;
+
     for (let i = 0; i < expressions.length; i++) {
-        const regex = new RegExp(expressions[i][0], "g");
+        const regex = regexps[i];
         const replacement = expressions[i][1];
 
-        const matches = originalHTML.match(regex) || [];
-        const replacementsInIteration = matches.length;
-        documentTotalReplacements += replacementsInIteration;
+        const matches = text.match(regex) || [];
+        textReplacementsCount += matches.length;
 
-        if (matches.length != 0) {
+        /* if (matches.length != 0) {
             console.debug("[[Dysclusif]] replacing ", matches);
-        }
+        } */
 
-        originalHTML = originalHTML.replace(regex, replacement);
+        text = text.replace(regex, replacement);
+    }
+    return [text, textReplacementsCount];
+}
+
+
+let replaceElems = () => {
+    let documentTotalReplacements = 0;
+
+    var textNodes = document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+
+    // iterate through all text nodes
+    while (textNodes.nextNode()) {
+        currentNode = textNodes.currentNode;
+
+        let result = applyRegExps(currentNode.textContent);
+
+        documentTotalReplacements += result[1];
+        currentNode.textContent = result[0];
     }
 
-    document.body.innerHTML = originalHTML;
     updateStatistics(documentTotalReplacements);
 }
 

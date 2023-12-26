@@ -1,5 +1,5 @@
 const extensionVersion = browser.runtime.getManifest().version;
-console.log(`[[Dysclusif]] v${extensionVersion} loaded`);
+console.debug(`[[Dysclusif]] v${extensionVersion} loaded`);
 
 browser.storage.local.get(["statistics"]).then(result => {
     let statistics = result.statistics;
