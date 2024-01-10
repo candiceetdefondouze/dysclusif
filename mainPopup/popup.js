@@ -37,8 +37,8 @@ let loadStatistics = () => {
     browser.storage.local.get(["statistics"]).then(result => {
         let statistics = result.statistics;
       
-        document.getElementById("count-replaced").innerHTML = statistics["totalReplaced"];
-        document.getElementById("count-modified").innerHTML = statistics["documentsModified"];
+        document.getElementById("count-replaced").textContent = statistics["totalReplaced"];
+        document.getElementById("count-modified").textContent = statistics["documentsModified"];
     })
 }
 
