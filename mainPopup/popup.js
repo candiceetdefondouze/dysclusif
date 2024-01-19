@@ -1,14 +1,13 @@
+const dialog = document.querySelector("dialog");
+
 let resetStatistics = () => {
-    let result = window.confirm("Do you really want to reset statistics ?");
-    if (result) {
-        browser.storage.local.set({ statistics: {
-            "totalReplaced": 0,
-            "documentsModified": 0
-        }}).then(() => {
-            loadStatistics();
-        })
-    }
-}
+    browser.storage.local.set({ statistics: {
+        "totalReplaced": 0,
+        "documentsModified": 0
+    }}).then(() => {
+        loadStatistics();
+    });
+};
 
 let toggleEnabled = () => {
     browser.storage.local.get(["settings"]).then(result => {
@@ -19,7 +18,7 @@ let toggleEnabled = () => {
             loadStatus();
         })
     })
-}
+};
 
 let loadStatus = () => {
     browser.storage.local.get(["settings"]).then(result => {
@@ -31,7 +30,7 @@ let loadStatus = () => {
             document.getElementById("status").classList = [];
         }
     })
-}
+};
 
 let loadStatistics = () => {
     browser.storage.local.get(["statistics"]).then(result => {
@@ -40,11 +39,18 @@ let loadStatistics = () => {
         document.getElementById("count-replaced").textContent = statistics["totalReplaced"];
         document.getElementById("count-modified").textContent = statistics["documentsModified"];
     })
-}
+};
 
 const resetButton = document.getElementById("reset");
-resetButton.addEventListener('click', () => { resetStatistics(); })
+resetButton.addEventListener('click', () => { dialog.showModal(); });
 document.getElementById("status-img").onclick = toggleEnabled;
+
+
+const confirmNo = document.getElementById("confirm-no");
+const confirmYes = document.getElementById("confirm-yes");
+confirmNo.addEventListener('click', () => { dialog.close(); });
+confirmYes.addEventListener('click', () => { resetStatistics(); dialog.close(); });
+
 
 loadStatus();
 loadStatistics();

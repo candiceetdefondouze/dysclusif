@@ -71,6 +71,7 @@ body {
     background-color: var(--color-base);
     color: var(--color-text);
     text-align: center;
+    min-width: 275px;
 }
 
 #status-img {
@@ -108,4 +109,11 @@ button {
     box-sizing: border-box;
     z-index: 1;
     border-radius: 2px;
+}
+
+dialog {
+    background-color: var(--color-crust);
+    border-color: var(--color-overlay0);
+    border-width: 2px;
+    border-radius: 5px;
 }
