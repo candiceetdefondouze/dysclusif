@@ -21,7 +21,7 @@ browser.storage.local.get(["settings"]).then(result => {
     settings = {};
     modif = true;
   }
-  if (!"enabled" in settings) {
+  if (!("enabled" in settings)) {
     settings.enabled = true;
     modif = true
   }
