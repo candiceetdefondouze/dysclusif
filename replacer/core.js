@@ -48,6 +48,8 @@ let applyRegExps = (text) => {
 }
 
 
-module.exports = {
-    applyRegExps: applyRegExps
-};
+if (typeof module != 'undefined') {
+    module.exports = {
+        applyRegExps: applyRegExps
+    };
+}

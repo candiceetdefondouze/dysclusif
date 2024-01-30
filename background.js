@@ -34,7 +34,7 @@ browser.storage.local.get(["settings"]).then(result => {
 
 browser.messageDisplayScripts.register({
     js: [
-        { file: "replacer/expressions.js" },
+        { file: "replacer/core.js" },
         { file: "replacer/replacer.js" }
     ],
 });
