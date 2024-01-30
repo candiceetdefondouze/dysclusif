@@ -11,13 +11,18 @@ expressions = [
 
     // End of words
     [`(s|)${pt}(trice|e|ne|ice)${optPt}s(?![a-zA-Z])`, "s"], // spectateurs•trice•s
-    [`${pt}(trice|e|ne|ice)(?![a-zA-Z])`, ""], // ancien•ne
+
     [`eur${pt}(ice|euse)${optPt}s(?![a-zA-Z])`, "eurs"], // travailleur•euse•s
-    [`x${optPt}(ses|se|s)(?![a-zA-Z])`, "x"], // nombreux•ses
+    [`eur${optPt}ice${optPt}s(?![a-zA-Z])`, "eurs"], // directeurices
     [`eur(s|)${pt}(ses|se)(?![a-zA-Z])`, "eurs"], // chercheur•ses
+    [`eur${optPt}ice(?![a-zA-Z])`, "eur"], // directeurice
+
+    [`aux${pt}(le|elle)(s|)(?![a-zA-Z])`, "aux"], // internationaux•les
+    [`x${optPt}(ses|se|s)(?![a-zA-Z])`, "x"], // nombreux•ses
     [`l${pt}les(?![a-zA-Z])`, "ls"], // personnel•les
     [`l${pt}le(?![a-zA-Z])`, "l"], // personnel•le
-    [`aux${pt}(le|elle)(s|)(?![a-zA-Z])`, "aux"], // internationaux•les
+    
+    [`${pt}(trice|e|ne|ice)(?![a-zA-Z])`, ""], // ancien•ne
     [`(${pt}e|\\(e\\))(?![a-zA-Z])`, ""], // •e / (e)
 
     // With explicit parenthesis
