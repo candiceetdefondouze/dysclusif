@@ -1,4 +1,4 @@
-const applyRegExps = require("./replacer/core.js").applyRegExps;
+const applyRegExps = require("./../replacer/core.js").applyRegExps;
 
 let testsCases = [
     ["internationaux·les", "internationaux"],
