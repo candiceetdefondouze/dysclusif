@@ -17,6 +17,7 @@ expressions = [
     [`eur(s|)${pt}(ses|se)(?![a-zA-Z])`, "eurs"], // chercheur•ses
     [`l${pt}les(?![a-zA-Z])`, "ls"], // personnel•les
     [`l${pt}le(?![a-zA-Z])`, "l"], // personnel•le
+    [`aux${pt}(le|elle)(s|)(?![a-zA-Z])`, "aux"], // internationaux•les
     [`(${pt}e|\\(e\\))(?![a-zA-Z])`, ""], // •e / (e)
 
     // With explicit parenthesis
