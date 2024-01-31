@@ -15,9 +15,21 @@ let updateStatistics = (documentTotalReplacements) => {
 let replaceElems = () => {
     let documentTotalReplacements = 0;
 
-    var textNodes = document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    // Some email clients use <span>·</span> when writing in inclusive
+    // Replace all elements <span>·</span> with ·
+    let spans = document.getElementsByTagName("span");
+    
+    for (let i = spans.length-1; i >= 0; i--) {
+        if (spans[i].textContent === "·") {
+            let parentNode = spans[i].parentNode;
+            parentNode.replaceChild(document.createTextNode("·"), spans[i]);
+            parentNode.normalize();
+        }
+    }
 
-    // iterate through all text nodes
+    // Iterate through all text nodes to find and replace
+    var textNodes = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+
     while (textNodes.nextNode()) {
         currentNode = textNodes.currentNode;
 
