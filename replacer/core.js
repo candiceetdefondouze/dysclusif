@@ -1,33 +1,34 @@
 let pt = '(•|\\.|·|⋅|⸱|\\-)';
 let optPt = `(${pt}|)`;
+let notWord = `(?![a-zA-Z${pt}])`; // Not a word after
 
 expressions = [
     // Complete words
-    [`(?<![a-zA-Z])tous${optPt}te${optPt}s|tou${pt}te${optPt}s(?![a-zA-Z])`, "tous"],
-    [`(?<![a-zA-Z])iels(?![a-zA-Z])`, "ils"],
-    [`(?<![a-zA-Z])iel(?![a-zA-Z])`, "il"],
-    [`(?<![a-zA-Z])celleux(?![a-zA-Z])`, "ceux"],
-    [`(?<![a-zA-Z])lae(?![a-zA-Z])`, "le"],
+    [`(?<![a-zA-Z])tous${optPt}te${optPt}s|tou${pt}te${optPt}s${notWord}`, "tous"],
+    [`(?<![a-zA-Z])iels${notWord}`, "ils"],
+    [`(?<![a-zA-Z])iel${notWord}`, "il"],
+    [`(?<![a-zA-Z])celleux${notWord}`, "ceux"],
+    [`(?<![a-zA-Z])lae${notWord}`, "le"],
 
     // End of words
-    [`(s|)${pt}(trice|e|ne|ice)${optPt}s(?![a-zA-Z])`, "s"], // spectateurs•trice•s
+    [`(s|)${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s"], // spectateurs•trice•s
 
-    [`eur${pt}(ice|euse)${optPt}s(?![a-zA-Z])`, "eurs"], // travailleur•euse•s
-    [`eur${optPt}ice${optPt}s(?![a-zA-Z])`, "eurs"], // directeurices
-    [`eur(s|)${pt}(ses|se)(?![a-zA-Z])`, "eurs"], // chercheur•ses
-    [`eur${optPt}ice(?![a-zA-Z])`, "eur"], // directeurice
+    [`eur${pt}(ice|euse)${optPt}s${notWord}`, "eurs"], // travailleur•euse•s
+    [`eur${optPt}ice${optPt}s${notWord}`, "eurs"], // directeurices
+    [`eur(s|)${pt}(se${optPt}s|se)${notWord}`, "eurs"], // chercheur•ses
+    [`eur${optPt}ice${notWord}`, "eur"], // directeurice
 
-    [`aux${pt}(le|elle)(s|)(?![a-zA-Z])`, "aux"], // internationaux•les
-    [`x${optPt}(ses|se|s)(?![a-zA-Z])`, "x"], // nombreux•ses
-    [`l${pt}les(?![a-zA-Z])`, "ls"], // personnel•les
-    [`l${pt}le(?![a-zA-Z])`, "l"], // personnel•le
+    [`aux${pt}(le|elle)(s|)${notWord}`, "aux"], // internationaux•les
+    [`x${optPt}(ses|se|s)${notWord}`, "x"], // nombreux•ses
+    [`l${pt}les${notWord}`, "ls"], // personnel•les
+    [`l${pt}le${notWord}`, "l"], // personnel•le
     
-    [`${pt}(trice|e|ne|ice)(?![a-zA-Z])`, ""], // ancien•ne
-    [`(${pt}e|\\(e\\))(?![a-zA-Z])`, ""], // •e / (e)
+    [`${pt}(trice|e|ne|ice)${notWord}`, ""], // ancien•ne
+    [`(${pt}e|\\(e\\))${notWord}`, ""], // •e / (e)
 
     // With explicit parenthesis
-    [`\\((trice|e|ne|ice)\\)s(?![a-zA-Z])`, "s"], // instituteur(trice)s
-    [`\\((trice|e|ne|ice)\\)(?![a-zA-Z])`, ""] // instituteur(trice)
+    [`\\((trice|e|ne|ice)\\)s${notWord}`, "s"], // instituteur(trice)s
+    [`\\((trice|e|ne|ice)\\)${notWord}`, ""] // instituteur(trice)
 ];
 
 let regexps = [];

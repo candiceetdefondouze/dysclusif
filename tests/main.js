@@ -4,6 +4,7 @@ let testsCases = [
     ["internationaux·les", "internationaux"],
     ["instituteur(trice)s", "instituteurs"],
     ["travailleur·euse·s", "travailleurs"],
+    ["chercheurs.se.s", "chercheurs"],
     ["directeurices", "directeurs"],
     ["nouveaux·elles", "nouveaux"],
     ["adhérent·e·s", "adhérents"],
