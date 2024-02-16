@@ -1,17 +1,21 @@
 const applyRegExps = require("./../replacer/core.js").applyRegExps;
 
 let testsCases = [
+    ["du.de la nouveau.elle", "du nouveau"],
     ["internationaux·les", "internationaux"],
     ["instituteur(trice)s", "instituteurs"],
     ["travailleur·euse·s", "travailleurs"],
+    ["représentant·es", "représentants"],
     ["chercheurs.se.s", "chercheurs"],
     ["directeurices", "directeurs"],
     ["nouveaux·elles", "nouveaux"],
     ["adhérent·e·s", "adhérents"],
     ["nombreuxses", "nombreux"],
+    ["acteur·rices", "acteurs"],
     ["tous.tes", "tous"],
     ["celleux", "ceux"],
     ["lae", "le"],
+    ["lea", "le"],
 
     ["Arc-en-ciel", "Arc-en-ciel"],
 ];

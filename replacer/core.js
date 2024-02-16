@@ -8,17 +8,21 @@ expressions = [
     [`(?<![a-zA-Z])iels${notWord}`, "ils"],
     [`(?<![a-zA-Z])iel${notWord}`, "il"],
     [`(?<![a-zA-Z])celleux${notWord}`, "ceux"],
-    [`(?<![a-zA-Z])lae${notWord}`, "le"],
+    [`(?<![a-zA-Z])(lae|lea)${notWord}`, "le"],
+    [`(?<![a-zA-Z])du.de (la${notWord}|l')`, "du"],
 
     // End of words
     [`(s|)${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s"], // spectateurs•trice•s
 
-    [`eur${pt}(ice|euse)${optPt}s${notWord}`, "eurs"], // travailleur•euse•s
+    [`eur${pt}(r|)(ice|euse)${optPt}s${notWord}`, "eurs"], // travailleur•euse•s
     [`eur${optPt}ice${optPt}s${notWord}`, "eurs"], // directeurices
     [`eur(s|)${pt}(se${optPt}s|se)${notWord}`, "eurs"], // chercheur•ses
     [`eur${optPt}ice${notWord}`, "eur"], // directeurice
+    [`nt(s|)${pt}e${optPt}s${notWord}`, "nts"], // représentant.e.s
+    [`nt${pt}e${notWord}`, "nt"], // réprésentant.e
 
     [`aux${pt}(le|elle)(s|)${notWord}`, "aux"], // internationaux•les
+    [`au${pt}(le|elle)${notWord}`, "au"], // nouveau.elle
     [`x${optPt}(ses|se|s)${notWord}`, "x"], // nombreux•ses
     [`l${pt}les${notWord}`, "ls"], // personnel•les
     [`l${pt}le${notWord}`, "l"], // personnel•le
