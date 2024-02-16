@@ -1,4 +1,6 @@
-const dialog = document.querySelector("dialog");
+const resetDialog = document.getElementById("reset-statistics");
+const advancedDialog = document.getElementById("advanced-settings");
+
 
 let resetStatistics = () => {
     browser.storage.local.set({ statistics: {
@@ -20,6 +22,17 @@ let toggleEnabled = () => {
     })
 };
 
+let updateAdvancedSettings = () => {
+    browser.storage.local.get(["settings"]).then(result => {
+        let settings = result.settings;
+
+        settings.replaceAllSpans = document.getElementById("replaceAllSpans").checked;
+        browser.storage.local.set({ settings: settings}).then(() => {
+            loadStatus();
+        })
+    })
+};
+
 let loadStatus = () => {
     browser.storage.local.get(["settings"]).then(result => {
         let settings = result.settings;
@@ -29,6 +42,7 @@ let loadStatus = () => {
         } else {
             document.getElementById("status").classList = [];
         }
+        document.getElementById("replaceAllSpans").checked = settings.replaceAllSpans;
     })
 };
 
@@ -41,15 +55,24 @@ let loadStatistics = () => {
     })
 };
 
-const resetButton = document.getElementById("reset");
-resetButton.addEventListener('click', () => { dialog.showModal(); });
+let closeDialog = () => {
+    document.location = "#!";
+}
+
 document.getElementById("status-img").onclick = toggleEnabled;
 
+const confirmReset = document.getElementById("reset-confirm");
+confirmReset.addEventListener('click', () => {
+    resetStatistics();
+    closeDialog();
+});
 
-const confirmNo = document.getElementById("confirm-no");
-const confirmYes = document.getElementById("confirm-yes");
-confirmNo.addEventListener('click', () => { dialog.close(); });
-confirmYes.addEventListener('click', () => { resetStatistics(); dialog.close(); });
+
+const updateAdvanced = document.getElementById("advanced-confirm");
+updateAdvanced.addEventListener('click', () => {
+    updateAdvancedSettings();
+    closeDialog();
+});
 
 
 loadStatus();

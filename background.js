@@ -25,6 +25,10 @@ browser.storage.local.get(["settings"]).then(result => {
     settings.enabled = true;
     modif = true
   }
+  if (!("replaceAllSpans" in settings)) {
+    settings.replaceAllSpans = false;
+    modif = true;
+  }
 
   if (modif) {
     browser.storage.local.set({ settings: settings});

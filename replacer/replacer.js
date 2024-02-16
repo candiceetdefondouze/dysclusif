@@ -12,7 +12,7 @@ let updateStatistics = (documentTotalReplacements) => {
 }
 
 
-let replaceElems = () => {
+let replaceElems = (replaceAllSpans) => {
     let documentTotalReplacements = 0;
 
     // Some email clients use <span>·</span> when writing in inclusive
@@ -20,9 +20,10 @@ let replaceElems = () => {
     let spans = document.getElementsByTagName("span");
     
     for (let i = spans.length-1; i >= 0; i--) {
-        if (spans[i].textContent === "·") {
+        let textContent = spans[i].textContent;
+        if (textContent === "·" || replaceAllSpans) {
             let parentNode = spans[i].parentNode;
-            parentNode.replaceChild(document.createTextNode("·"), spans[i]);
+            parentNode.replaceChild(document.createTextNode(textContent), spans[i]);
             parentNode.normalize();
         }
     }
@@ -44,6 +45,6 @@ let replaceElems = () => {
 
 browser.storage.local.get(["settings"]).then(result => {
     if (result.settings.enabled) {
-        replaceElems();
+        replaceElems(result.settings.replaceAllSpans);
     }
 })

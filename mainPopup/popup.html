@@ -10,19 +10,43 @@
 <script type="module" src="popup.js"></script>
 
 <body>
+    <div id="dialogs">
+        <dialog id="reset-statistics">
+            <h3>Do you really want to reset statistics ?</h3>
+            <br/>
+            <a href="#!"><button class="close-dialog">No</button></a>
+            <button id="reset-confirm">Yes</button>
+        </dialog>
+        <dialog id="advanced-settings">
+            <h3>Advanced Settings</h3>
+            <br/>
+            <input type="checkbox" id="replaceAllSpans" name="replaceAllSpans">
+            <label for="replaceAllSpans">
+              Replace all spans <br/><span class="hint">This may break the layout of some e-mails but will find more expressions</span>
+            </label>
+            <br/>
+            <br/>
+            <a href="#!"><button class="close-dialog">Close</button></a>
+            <button id="advanced-confirm">Update Settings</button>
+        </dialog>
+        <div class="mask" id="!"></div>
+    </div>
+
     <div id="status"><img id="status-img" src="images/status.png"/></div>
     <div class="statistics">
         <b id="count-replaced">?</b> expressions replaced<br/>
         <b id="count-modified">?</b> modified documents<br/>
     </div>
     <br/>
-    <button id="reset">Reset statistics</button>
-    <dialog id="confirmation">
-        Do you really want to reset statistics ?
-        <br/>
-        <button id="confirm-no">No</button>
-        <button id="confirm-yes">Yes</button>
-    </dialog>
+    <div id="actions">
+        <a href="#reset-statistics">
+            <button>Reset statistics</button>
+        </a>
+        <a href="#advanced-settings">
+            <button>Advanced settings</button>
+        </a>
+    </div>
+
 </body>
 
 </html>

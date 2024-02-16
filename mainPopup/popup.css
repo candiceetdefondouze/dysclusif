@@ -71,7 +71,8 @@ body {
     background-color: var(--color-base);
     color: var(--color-text);
     text-align: center;
-    min-width: 275px;
+    min-width: 400px;
+    min-height: 300px;
 }
 
 #status-img {
@@ -111,9 +112,53 @@ button {
     border-radius: 2px;
 }
 
+#actions {
+    position: absolute;
+    bottom: 15px;
+}
+
 dialog {
     background-color: var(--color-crust);
     border-color: var(--color-overlay0);
     border-width: 2px;
     border-radius: 5px;
+    top: 0;
+
+    z-index: 3;
+    display: none;
+    color: var(--color-text);
+}
+
+dialog:target {
+    display: block;
+}
+
+dialog:target~.mask {
+    display: block;
+}
+
+.mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-crust);
+    z-index: 1;
+    opacity: 50%;
+}
+
+h3 {
+    color: var(--color-subtext1);
+    margin: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+span.hint {
+    color: var(--color-subtext0);
+    font-size: 0.7em;
 }
