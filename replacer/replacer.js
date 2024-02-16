@@ -41,6 +41,10 @@ let replaceElems = (replaceAllSpans) => {
     }
 
     updateStatistics(documentTotalReplacements);
+    browser.runtime.sendMessage({
+        type: "replacementCount",
+        count: documentTotalReplacements
+    });
 }
 
 browser.storage.local.get(["settings"]).then(result => {

@@ -29,11 +29,29 @@ browser.storage.local.get(["settings"]).then(result => {
     settings.replaceAllSpans = false;
     modif = true;
   }
+  if (!("hideBadge" in settings)) {
+    settings.hideBadge = false;
+    modif = true;
+  }
 
   if (modif) {
     browser.storage.local.set({ settings: settings});
   }
 })
+
+browser.runtime.onMessage.addListener((message) => {
+  if (message.type == "replacementCount") {
+    browser.storage.local.get(["settings"]).then(result => {
+      if (!(result.settings.hideBadge))
+        browser.browserAction.setBadgeText({text: message.count.toString()});
+    
+    });
+  } else if (message.type == "hideBadge") {
+    browser.browserAction.setBadgeText({text: null});
+  } else {
+    console.warning("[[Dysclusif]] Received unknown message", message)
+  }
+});
 
 
 browser.messageDisplayScripts.register({

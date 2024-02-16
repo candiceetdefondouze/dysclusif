@@ -27,6 +27,11 @@ let updateAdvancedSettings = () => {
         let settings = result.settings;
 
         settings.replaceAllSpans = document.getElementById("replaceAllSpans").checked;
+        settings.hideBadge = document.getElementById("hideBadge").checked;
+
+        if (settings.hideBadge)
+            browser.runtime.sendMessage({ type: "hideBadge" });
+
         browser.storage.local.set({ settings: settings}).then(() => {
             loadStatus();
         })
@@ -43,6 +48,7 @@ let loadStatus = () => {
             document.getElementById("status").classList = [];
         }
         document.getElementById("replaceAllSpans").checked = settings.replaceAllSpans;
+        document.getElementById("hideBadge").checked = settings.hideBadge;
     })
 };
 
