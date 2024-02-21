@@ -13,6 +13,7 @@ let testsCases = [
     ["nombreuxses", "nombreux"],
     ["acteur·rices", "acteurs"],
     ["tous.tes", "tous"],
+    ["Tous.tes", "Tous"],
     ["celleux", "ceux"],
     ["lae", "le"],
     ["lea", "le"],
