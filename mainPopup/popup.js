@@ -46,6 +46,7 @@ let loadStatus = () => {
             document.getElementById("status").classList = ["enabled"];
         } else {
             document.getElementById("status").classList = [];
+            browser.runtime.sendMessage({ type: "hideBadge" });
         }
         document.getElementById("replaceAllSpans").checked = settings.replaceAllSpans;
         document.getElementById("hideBadge").checked = settings.hideBadge;

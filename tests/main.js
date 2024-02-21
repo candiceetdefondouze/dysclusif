@@ -12,11 +12,14 @@ let testsCases = [
     ["adhérent·e·s", "adhérents"],
     ["nombreuxses", "nombreux"],
     ["acteur·rices", "acteurs"],
+    ["français·es", "français"],
+    ["serveur·se", "serveur"],
+    ["permé·es", "permés"],
     ["tous.tes", "tous"],
     ["Tous.tes", "Tous"],
     ["celleux", "ceux"],
     ["lae", "le"],
-    ["lea", "le"],
+    ["le.a", "le"],
 
     ["Arc-en-ciel", "Arc-en-ciel"],
 ];
