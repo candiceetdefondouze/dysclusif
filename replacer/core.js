@@ -1,36 +1,41 @@
 let pt = '(•|\\.|·|⋅|⸱|\\-)';
-let optPt = `(${pt}|)`;
-let notWord = `(?![a-zA-Z${pt}])`; // Not a word after
+let optPt = `${pt}?`;
+let notWord = `(?![a-zA-Z])`; // Not a word after
 
 /* Regex, replacement, additional regex flags (i : case insensitive)*/
 expressions = [
     // Complete words
     [`(?<![a-zA-Z])tous${optPt}te${optPt}s|tou${pt}te${optPt}s${notWord}`, "tous", "i"],
-    [`(?<![a-zA-Z])iels${notWord}`, "ils", "i"],
-    [`(?<![a-zA-Z])iel${notWord}`, "il", "i"],
+    [`(?<![a-zA-Z])(iels|ils?${pt}elles|il${optPt}les)${notWord}`, "ils", "i"],
+    [`(?<![a-zA-Z])(iel|il${pt}elle|il${optPt}le)${notWord}`, "il", "i"],
     [`(?<![a-zA-Z])celleux${notWord}`, "ceux", "i"],
     [`(?<![a-zA-Z])(la${optPt}e|le${optPt}a)${notWord}`, "le", "i"],
     [`(?<![a-zA-Z])du.de (la${notWord}|l')`, "du", "i"],
 
     // End of words
-    [`(s|)${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s", ""], // spectateurs•trice•s
+    [`(s|)${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s", ""], // spectateurs.trice.s
 
     [`nt${pt}e${notWord}`, "nt", ""], // réprésentant.e
+    [`eur${pt}r?(ice|euse)${optPt}s${notWord}`, "eurs", ""], // travailleur.euse.s
+    [`(eurs?${pt}(se${optPt}s)|eurs${pt}(se${optPt}s?))${notWord}`, "eurs", ""], // chercheur.ses
+    [`eurs?${optPt}r?ice${optPt}s${notWord}`, "eurs", ""], // directeurices
+    [`eur${optPt}r?ice${notWord}`, "eur", ""], // directeurice
     [`eur${pt}se${notWord}`, "eur", ""], // serveur.se
-    [`eur${optPt}ice${notWord}`, "eur", ""], // directeurice
-    [`eur${pt}(r|)(ice|euse)${optPt}s${notWord}`, "eurs", ""], // travailleur•euse•s
-    [`eur(s|)${pt}(se${optPt}s|se)${notWord}`, "eurs", ""], // chercheur•ses
-    [`eur${optPt}ice${optPt}s${notWord}`, "eurs", ""], // directeurices
-    [`nt(s|)${pt}e${optPt}s${notWord}`, "nts", ""], // représentant.e.s
+    [`iers?${pt}i?ère${optPt}s${notWord}`, "iers", ""], // derniers.ières
+    [`nts?${pt}e${optPt}s${notWord}`, "nts", ""], // représentant.e.s
+    [`e${optPt}aux${pt}lles${notWord}`, "eaux", ""], // nouveaux·elles
 
-    [`aux${pt}(le|elle)(s|)${notWord}`, "aux", ""], // internationaux•les
+    [`aux${pt}(le|elle)s?${notWord}`, "aux", ""], // internationaux.les
+    [`e${optPt}au${pt}lle${notWord}`, "eau", ""], // nouveau.elle
+    [`ier${pt}i?ère${notWord}`, "ier", ""], // dernier.ière
     [`au${pt}(le|elle)${notWord}`, "au", ""], // nouveau.elle
-    [`x${optPt}(ses|se|s)${notWord}`, "x", ""], // nombreux•ses
-    [`l${pt}les${notWord}`, "ls", ""], // personnel•les
-    [`l${pt}le${notWord}`, "l", ""], // personnel•le
+    [`x${optPt}(ses|se|s)${notWord}`, "x", ""], // nombreux.ses
+    [`ls?${pt}les${notWord}`, "ls", ""], // personnel.les
+    [`fs?${pt}fe${optPt}s${notWord}`, "fs", ""], // chef.fe.s (le 2e . n'a pas trop de sens...)
+    [`l${pt}le${notWord}`, "l", ""], // personnel.le
     
-    [`${pt}(trice|e|ne|ice)${notWord}`, "", ""], // ancien•ne
-    [`(${pt}e|\\(e\\))${notWord}`, "", ""], // •e / (e)
+    [`${pt}(trice|e|ne|ice)${notWord}`, "", ""], // ancien.ne
+    [`(${pt}e|\\(e\\))${notWord}`, "", ""], // .e / (e)
 
     // With explicit parenthesis
     [`\\((trice|e|ne|ice)\\)s${notWord}`, "s", ""], // instituteur(trice)s
