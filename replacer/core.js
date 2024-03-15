@@ -39,7 +39,9 @@ expressions = [
 
     // With explicit parenthesis
     [`\\((trice|e|ne|ice)\\)s${notWord}`, "s", ""], // instituteur(trice)s
-    [`\\((trice|e|ne|ice)\\)${notWord}`, "", ""] // instituteur(trice)
+    [`\\((trice|e|ne|ice)\\)${notWord}`, "", ""], // instituteur(trice)
+    [`(?<![hlp])eureuse${notWord}`, "eur", ""], // Joueureuse, dangerexu car il y a les mots comme "heureuse"
+    [`(?<![hlp])eurs?euse${optPt}s${notWord}`, "eurs", ""] // Joueureuses
 ];
 
 let regexps = [];

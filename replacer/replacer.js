@@ -13,6 +13,7 @@ let updateStatistics = (documentTotalReplacements) => {
 
 
 let replaceElems = (replaceAllSpans) => {
+    let points = ["•", ".", "·", "⋅", "⸱", "-"];
     let documentTotalReplacements = 0;
 
     // Some email clients use <span>·</span> when writing in inclusive
@@ -21,7 +22,7 @@ let replaceElems = (replaceAllSpans) => {
     
     for (let i = spans.length-1; i >= 0; i--) {
         let textContent = spans[i].textContent;
-        if (textContent === "·" || replaceAllSpans) {
+        if (points.includes(textContent) || replaceAllSpans) {
             let parentNode = spans[i].parentNode;
             parentNode.replaceChild(document.createTextNode(textContent), spans[i]);
             parentNode.normalize();
