@@ -16,11 +16,11 @@ expressions = [
     [`(s|)${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s", ""], // spectateurs.trice.s
 
     [`nt${pt}e${notWord}`, "nt", ""], // réprésentant.e
-    [`eur${pt}r?(ice|euse)${optPt}s${notWord}`, "eurs", ""], // travailleur.euse.s
+    [`eur${pt}r?(esse|ice|euse)${optPt}s${notWord}`, "eurs", ""], // travailleur.euse.s
     [`(eurs?${pt}(se${optPt}s)|eurs${pt}(se${optPt}s?))${notWord}`, "eurs", ""], // chercheur.ses
     [`eurs?${optPt}r?ice${optPt}s${notWord}`, "eurs", ""], // directeurices
     [`eur${optPt}r?ice${notWord}`, "eur", ""], // directeurice
-    [`eur${pt}se${notWord}`, "eur", ""], // serveur.se
+    [`eur${pt}(esse|se)${notWord}`, "eur", ""], // serveur.se
     [`iers?${pt}i?ère${optPt}s${notWord}`, "iers", ""], // derniers.ières
     [`nts?${pt}e${optPt}s${notWord}`, "nts", ""], // représentant.e.s
     [`e${optPt}aux${pt}lles${notWord}`, "eaux", ""], // nouveaux·elles
