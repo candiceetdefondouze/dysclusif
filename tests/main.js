@@ -17,6 +17,7 @@ let testsCases = [
     ["français·es", "français"],
     ["joueureuses", "joueurs"],
     ["heureuses", "heureuses"],
+    ["prince.sses", "princes"],
     ["serveur·se", "serveur"],
     ["be·aux·lles", "beaux"],
     ["heureuse", "heureuse"],
@@ -26,6 +27,7 @@ let testsCases = [
     ["Tous.tes", "Tous"],
     ["fier.ère", "fier"],
     ["celleux", "ceux"],
+    ["hôte.sse", "hôte"],
     ["le.a", "le"],
     ["lae", "le"],
 

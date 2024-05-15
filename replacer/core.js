@@ -13,7 +13,7 @@ expressions = [
     [`(?<![a-zA-Z])du.de (la${notWord}|l')`, "du", "i"],
 
     // End of words
-    [`(s|)${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s", ""], // spectateurs.trice.s
+    [`s?${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s", ""], // spectateurs.trice.s
 
     [`nt${pt}e${notWord}`, "nt", ""], // réprésentant.e
     [`eur${pt}r?(esse|ice|euse)${optPt}s${notWord}`, "eurs", ""], // travailleur.euse.s
@@ -33,6 +33,8 @@ expressions = [
     [`ls?${pt}les${notWord}`, "ls", ""], // personnel.les
     [`fs?${pt}fe${optPt}s${notWord}`, "fs", ""], // chef.fe.s (le 2e . n'a pas trop de sens...)
     [`l${pt}le${notWord}`, "l", ""], // personnel.le
+    [`es?${pt}e?sse${optPt}s${notWord}`, "es", ""], // hôtes.esse.s
+    [`e${pt}e?sse${notWord}`, "e", ""], // hôte.sse
     
     [`${pt}(trice|e|ne|ice)${notWord}`, "", ""], // ancien.ne
     [`(${pt}e|\\(e\\))${notWord}`, "", ""], // .e / (e)
