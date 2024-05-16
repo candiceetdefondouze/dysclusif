@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Dysclusif",
-    "description": "Removing inclusive writing from your inbox",
+    "description": "Removing inclusive writing for dyslexic people",
     "version": "1.2.5",
     "author": "Candiceetdefondouze",
     "browser_specific_settings": {
