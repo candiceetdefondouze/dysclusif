@@ -8,7 +8,8 @@ expressions = [
     [`(?<![a-zA-Z])tous${optPt}te${optPt}s|tou${pt}te${optPt}s${notWord}`, "tous", "i"],
     [`(?<![a-zA-Z])(iels|ils?${pt}elles|il${optPt}les)${notWord}`, "ils", "i"],
     [`(?<![a-zA-Z])(iel|il${pt}elle|il${optPt}le)${notWord}`, "il", "i"],
-    [`(?<![a-zA-Z])celleux${notWord}`, "ceux", "i"],
+    [`(?<![a-zA-Z])cell${optPt}eux${notWord}`, "ceux", "i"],
+    [`(?<![a-zA-Z])ell${optPt}eux${notWord}`, "eux", "i"],
     [`(?<![a-zA-Z])(la${optPt}e|le${optPt}a)${notWord}`, "le", "i"],
     [`(?<![a-zA-Z])du.de (la${notWord}|l')`, "du", "i"],
 
@@ -22,10 +23,13 @@ expressions = [
     [`eur${optPt}r?ice${notWord}`, "eur", ""], // directeurice
     [`eur${pt}(esse|se)${notWord}`, "eur", ""], // serveur.se
     [`iers?${pt}i?ère${optPt}s${notWord}`, "iers", ""], // derniers.ières
+    [`ers?${pt}ère${optPt}s${notWord}`, "ers", ""], // chers.ères
     [`nts?${pt}e${optPt}s${notWord}`, "nts", ""], // représentant.e.s
     [`e${optPt}aux${pt}lles${notWord}`, "eaux", ""], // nouveaux·elles
 
     [`aux${pt}(le|elle)s?${notWord}`, "aux", ""], // internationaux.les
+    [`(le|elle|ell?)s?${pt}aux${notWord}`, "aux", ""], // international.aux
+    [`ifs?${pt}ves${notWord}`, "ifs", ""], // impératif.ves
     [`e${optPt}au${pt}lle${notWord}`, "eau", ""], // nouveau.elle
     [`ier${pt}i?ère${notWord}`, "ier", ""], // dernier.ière
     [`au${pt}(le|elle)${notWord}`, "au", ""], // nouveau.elle
@@ -36,8 +40,11 @@ expressions = [
     [`es?${pt}e?sse${optPt}s${notWord}`, "es", ""], // hôtes.esse.s
     [`e${pt}e?sse${notWord}`, "e", ""], // hôte.sse
     
+    [`if${pt}ve${notWord}`, "if", ""], // impératif.ve
+    [`er${pt}ère${notWord}`, "er", ""], // dernier.ière
     [`${pt}(trice|e|ne|ice)${notWord}`, "", ""], // ancien.ne
     [`(${pt}e|\\(e\\))${notWord}`, "", ""], // .e / (e)
+    [`fra(î|i)s${pt}ches${notWord}`, "frais", ""], // frais
 
     // With explicit parenthesis
     [`\\((trice|e|ne|ice)\\)s${notWord}`, "s", ""], // instituteur(trice)s
