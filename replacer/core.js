@@ -12,6 +12,7 @@ expressions = [
     [`(?<![a-zA-Z])ell${optPt}eux${notWord}`, "eux", "i"],
     [`(?<![a-zA-Z])(la${optPt}e|le${optPt}a)${notWord}`, "le", "i"],
     [`(?<![a-zA-Z])du.de (la${notWord}|l')`, "du", "i"],
+    [`(?<![a-zA-Z])(son${pt}sa|sa${optPt}son)`, "son", "i"],
 
     // End of words
     [`s?${pt}(trice|e|ne|ice)${optPt}s${notWord}`, "s", ""], // spectateurs.trice.s
@@ -26,6 +27,7 @@ expressions = [
     [`ers?${pt}ère${optPt}s${notWord}`, "ers", ""], // chers.ères
     [`nts?${pt}e${optPt}s${notWord}`, "nts", ""], // représentant.e.s
     [`e${optPt}aux${pt}lles${notWord}`, "eaux", ""], // nouveaux·elles
+    [`elles?${optPt}e?aux${notWord}`, "eaux", ""], // nouvelleaux
 
     [`aux${pt}(le|elle)s?${notWord}`, "aux", ""], // internationaux.les
     [`(le|elle|ell?)s?${pt}aux${notWord}`, "aux", ""], // international.aux
@@ -36,6 +38,7 @@ expressions = [
     [`x${optPt}(ses|se|s)${notWord}`, "x", ""], // nombreux.ses
     [`ls?${pt}les${notWord}`, "ls", ""], // personnel.les
     [`fs?${pt}fe${optPt}s${notWord}`, "fs", ""], // chef.fe.s (le 2e . n'a pas trop de sens...)
+    [`f${pt}fe${notWord}`, "f", ""], // chef.fe
     [`l${pt}le${notWord}`, "l", ""], // personnel.le
     [`es?${pt}e?sse${optPt}s${notWord}`, "es", ""], // hôtes.esse.s
     [`e${pt}e?sse${notWord}`, "e", ""], // hôte.sse
